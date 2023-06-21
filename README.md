@@ -33,8 +33,16 @@ The architecture of the SRAM with the serial interface is shown in Fig. 2. The S
 The next two sections detail the architecture of the timing to keep everything synchronous with the SPI clock (SLCK). The SPI protocol has 4 modes of operation (0-3) [3][4] and this SPI controller is designed for Mode-2 where the idle SCLK and CS are high and, the microcontroller sends data at the negative edge of the clock and samples at the positive edge of the clock. To keep the design simple and avoid Static-Time Analysis (STA) for setup/hold time issues, the controller is designed such that it sends and samples data on opposite edges of SCLK. 
 ### B. Write Operation
 Fig. 3 shows the timing diagram of the write operation. After the microcontroller selects the SRAM chip by pulling Chip-Select (CS) low, 2 bytes are transferred serially out on the output port (SDO) with data changing synchronously on every negative edge of the clock (SCLK). The first bit denotes whether the operation reads (1) or writes (0). The next 5 bits are assigned to the address of the SRAM and the last two bits are unused. The second byte contains the 8-bit data that needs to be written to the corresponding address. The controller latches the read/write bit after the first clock cycle and latches the address to the decoders at the end of the 6th clock cycle. Then the controller generates a pre-charge signal (pc) at the positive edge of the 14th cycle for one clock period. The data is latched for write at the positive edge of the last clock cycle (16th) and write control signals (wl, wr, col) are also asserted at the same edge and pulled low when the chip is de-selected (CS is high).
+<p align="center">
+  <img src="/images/Fig3-Timing-diagram-of-write-operation.png">
+</p>
+
 ### C. Read Operation
 Fig. 4 shows the timing diagram for the read operation. The first byte of the read operation is the same as the write operation except, the pre-charge signal (pc) is asserted at the positive edge of the 7th clock cycle and the read enable signal (ren) is asserted for one clock cycle at the positive edge of the 8th clock cycle during which the data from the SRAM (DSNS[7:0]) is latched by a shift register at the negative edge of the 9th clock cycle. Once the data is latched, it is shifted bit by bit into the input port of the microcontroller (SDI).
+<p align="center">
+  <img src="/images/Fig4-Timing-diagram-of-read-operation.png">
+</p>
+
 ## SRAM Design and Simulation Results
 As discussed in the previous section, the complete SRAM design contains a 6-transistor (6T) SRAM cell, a pre-charge circuit, a row decoder, control logic, a column decoder, and a sense amplifier. This section will discuss the design of the blocks and their simulation results.
 ### A. 6-Transistor (6T) CMOS SRAM Cell
