@@ -15,6 +15,7 @@ A typical Internet-of-Things (IoT) sensor node contains four main devices. As sh
 <p align="center">
   <img src="/images/Fig1-Block-diagram-of-a-typical-IoT-sensor-node.png">
 </p>
+Fig.1: Block diagram of a typical IoT sensor node
 
 The MCU serves as the controller for the IoT node to negotiate all transactions between devices. The wireless device is responsible for sending sensor data to the nearest internet gateway and, receiving control instructions from the gateway as well. The sensor measures environmental and other parameters (temperature, humidity, position, tilt, color, etc.) and the data is digitized and transmitted over the SPI/ I2C serial communication bus. The SRAM is used to buffer local data when a gateway is not available for communication.
 
