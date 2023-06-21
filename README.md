@@ -53,22 +53,49 @@ The core of the SRAM is a memory cell that stores one bit of information. Each c
 
 ### B. Pre-charge Circuit
 Since the output bitlines (bl and blb) of each 6T cell are shared by all the cells in the rows in that column, the parasitic capacitance on those nodes is very large making it impractical for the 6T cells to drive the bitlines to full CMOS voltage levels. Instead, both the bitlines are pre-charged to the same voltage, and a differential amplifier is used to sense the difference between the bitlines to read it. The nodes are also pre-charged before a write operation to reset a previous operation. As shown in Fig. 6, NMOS M_7 and M_8 are used to pre-charge the bitlines to VDD-VTN. Since the sensing mechanism is a differential operation, it is critical for both the bitlines to be equal in voltage for which PMOS M_9 is used. It should be noted that the bitlines are pre-charged to VDD-VTN instead of VDD. It is done to keep the differential sense amplifier active during the pre-charge phase. 
+<p align="center">
+  <img src="/images/Fig6-Pre-charge-circuit.png">
+</p>
+
 ### C. Row Decoder
 Fig. 7 shows a pass-transistor logic based 4:16 row decoder to select any row from the sixteen rows in the SRAM array based on the input address bit configurations. The 4-bit address signals a[3:0] are used to activate the transistors in such a way that, any one of the outputs will be high. For example, if all the address bits are low (0000), then wl[0] output will be high and this will select the 0th row in the SRAM array. Similarly, if all the address bits are high (1111), wl[15] output line will be high and that will select the 15th row of the SRAM array. Since the pass-transistor logic only passes high (VDD), a pull-down is required at the output.
+<p align="center">
+  <img src="/images/Fig7-Row-decoder.png">
+</p>
 
 Finally, a buffer is used to convert the output to CMOS levels and drive the large capacitance of the word line. The pull-down was realized using a 1uA current source (I_0). Please note that this was an experimental design to demonstrate a compact design but can be realized using standard static CMOS logic.
 ### D. Column Decoder Logic
 Fig. 8 shows the block diagram of column decoder logic. Based on the address, the column decoder selects the appropriate columns in the SRAM array. In this work, an 8-bit byte of data is either read from or written to the SRAM array. Therefore, from the 16 columns, a set of 8 is chosen based on the MSB of the address a[4]. Depending on if it’s a write (rwn=high) or read (rwn=low) operation, the decoder logic either allows the data from the write driver to be written to the cell or tri-states them. The bitlines are always connected to the input of the sense amplifier so in case of a read operation, the sense amplifiers are simply enabled at the appropriate time
+<p align="center">
+  <img src="/images/Fig8-Contol-logic-and-column-decoder.jpg">
+</p>
+
 ### E. Sense Amplifier
 The sense amplifier is used to sense the voltage difference between the bitlines and amplify it to drive the digital circuits. There are different types of sense amplifiers are present [5,6] and used in the SRAM design depending upon the application which is typically a trade-off between area and power. In this work, an analog differential amplifier-based sense amplifier is implemented. Fig. 9 shows the differential amplifier-based sense amplifier. As shown in the figure, during the read operation a small voltage difference between the bitlines ‘bl’ and ‘blb’ is amplified by the sense amplifier and the buffer converts the output to rail-to-rail CMOS voltage. The gain of the amplifier and the threshold of the buffer is designed in tandem to achieve that function.
+<p align="center">
+  <img src="/images/Fig9-Circuit-diagram-of-the-sense-amplifier.png">
+</p>
+
 ### F. SPI Interface and SRAM Controller
 The core contribution of this work is to create all the control signals for the SRAM using only the SPI signals (SCLK, CS, SDO, SDI) without the need for any internal clock or bias which adds to the time and cost of the design. Fig. 10 shows the architecture of the SPI interface to the SRAM. 
+<p align="center">
+  <img src="/images/Fig10-Architecture-of-SPI-SRAM-interface.jpg">
+</p>
 
 Two 8-bit shift registers form the serial-parallel interface for read and write operation. The 4-bit synchronous counter and a set of comparators are used to keep track of the SPI clock. The SRAM control logic is a Mealy Finite State Machine (FSM) that uses the comparator output and the SPI signals to create the appropriate control logic (pc, wen, ren) for the SRAM read and write operation as detailed in the timing diagrams in Fig. 3 and Fig. 4.
 ## Test Setup and Measurement Result
 Fig. 11 shows the chip layout and chip micrograph. A picture-schematic of the measurement setup is shown in Fig. 12. Analog discovery 2 (AD2) [7], a USB-based multi- instrument including an oscilloscope and logic analyzer, was used to test the read and write function of the SRAM using SPI protocol. Open-source Python API for AD2 was used to generate the SPI signals and the same AD2 was used as an oscilloscope to monitor the SPI signals.
+<p align="center">
+  <img src="/images/Fig11-Chip-layout-and-chip-micrograph.jpg">
+</p>
 
 Fig. 13 shows an example output for an SPI write and read transaction. Date 0xDC is written into location 0x19 and the same location is read to verify the written data. As seen from the measurement result, the first bit on SDO is 0 denoting a write, the next five bit is the address 0x19 and the second word is 0xDC. The last two byte is a read operation of the same location and seen from the SDI output of the SRAM which is 0xDC.
+<p align="center">
+  <img src="/images/Fig12-Picture-schematic-of-the-test-and-measurement-setup.png">
+</p>
+<p align="center">
+  <img src="/images/Fig13-Mesurement-result.png">
+</p>
 ## Conclusion
 A SRAM design in 0.6μm CMOS technology is demonstrated to be a viable candidate for IoT-based sensor nodes. Deriving all the internal signals from the SPI signals allows IoT designers to scale the power directly through the access rates. It also keeps the design simple to keep design costs to a minimum. Additionally, this project can also be used as a tapeout-based course project in the undergraduate curriculum to give the students an end-to-end experience in IC design. 0.6um CMOS process is an old and mature process making it a low-cost technology allowing educational institutions to make fabrication cost affordable.
 ## Acknowledgement
