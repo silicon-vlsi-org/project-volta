@@ -8,6 +8,7 @@ In this project 12 undergraduate students designed, simulated and tested a Seria
 # Static Random Access Memory (SRAM)
 ## Abstract
 This paper presents the detailed design and implementation of a Static Random-Access Memory (SRAM) in CMOS technology. The entire operation of the SRAM (read, write, and control) is done through Serial Peripheral Interface (SPI), an industry-standard serial protocol, without the requirement of any built-in clock or bias, making it compact and low-power. This SRAM is specifically suitable for Internet-of-Things (IoT) applications with slow access rates and low power consumption like IoT-based environment sensors. For the purpose of demonstration, a 32-byte SRAM was designed and fabricated in 0.6um CMOS technology and successfully tested for its full functionality after fabrication.
+
 Keywords- Static Random Access Memory, Serial Peripheral Interface, Internet-of-Things, CMOS, Sensor node.
 ## Introduction
 A typical Internet-of-Things (IoT) sensor node contains four main devices. As shown in Fig. 1, these four devices are; a sensor, a microcontroller unit (MCU), a wireless device (Bluetooth, WiFi, LoRa), and static random access memory (SRAM). Since sensor nodes work on low data rates and many sensors could interface to the controller, communicate among themselves over a serial bus such as the Serial Peripheral Interface (SPI) or Inter IC Communication (I2C) protocol to save space and keep the cost down.
