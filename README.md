@@ -6,7 +6,9 @@ In this project 12 undergraduate students designed, simulated and tested a Seria
 - [SRAM Controller Design](https://www.dropbox.com/s/lr6c93vjr3xvl0v/2019-0619-ProjectDescrip-SPI-controller.pdf): A brief outline of the controller design which generates the SRAM signals from the SPI signals.
 
 # Static Random Access Memory (SRAM)
-
+## Abstract
+This paper presents the detailed design and implementation of a Static Random-Access Memory (SRAM) in CMOS technology. The entire operation of the SRAM (read, write, and control) is done through Serial Peripheral Interface (SPI), an industry-standard serial protocol, without the requirement of any built-in clock or bias, making it compact and low-power. This SRAM is specifically suitable for Internet-of-Things (IoT) applications with slow access rates and low power consumption like IoT-based environment sensors. For the purpose of demonstration, a 32-byte SRAM was designed and fabricated in 0.6um CMOS technology and successfully tested for its full functionality after fabrication.
+Keywords- Static Random Access Memory, Serial Peripheral Interface, Internet-of-Things, CMOS, Sensor node.
 ## Design of a 6T SRAM 
 
 ## Serial Protocol Interface (SPI)
