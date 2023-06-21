@@ -59,10 +59,8 @@ The core of the SRAM is a memory cell that stores one bit of information. Each c
 
 ### B. Pre-charge Circuit
 Since the output bitlines (bl and blb) of each 6T cell are shared by all the cells in the rows in that column, the parasitic capacitance on those nodes is very large making it impractical for the 6T cells to drive the bitlines to full CMOS voltage levels. Instead, both the bitlines are pre-charged to the same voltage, and a differential amplifier is used to sense the difference between the bitlines to read it. The nodes are also pre-charged before a write operation to reset a previous operation. As shown in Fig. 6, NMOS M_7 and M_8 are used to pre-charge the bitlines to VDD-VTN. Since the sensing mechanism is a differential operation, it is critical for both the bitlines to be equal in voltage for which PMOS M_9 is used. It should be noted that the bitlines are pre-charged to VDD-VTN instead of VDD. It is done to keep the differential sense amplifier active during the pre-charge phase. 
-
 <p align="center">
   <img src="/images/Fig6-Pre-charge-circuit.png">
-  Fig. 6: Pre-charge circuit
 </p>
 
 ### C. Row Decoder
