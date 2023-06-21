@@ -13,7 +13,7 @@ Keywords- Static Random Access Memory, Serial Peripheral Interface, Internet-of-
 ## Introduction
 A typical Internet-of-Things (IoT) sensor node contains four main devices. As shown in Fig. 1, these four devices are; a sensor, a microcontroller unit (MCU), a wireless device (Bluetooth, WiFi, LoRa), and static random access memory (SRAM). Since sensor nodes work on low data rates and many sensors could interface to the controller, communicate among themselves over a serial bus such as the Serial Peripheral Interface (SPI) or Inter IC Communication (I2C) protocol to save space and keep the cost down.
 <p align="center">
-  <img src="/Images/BGR1.png">
+  <img src="/images/Fig1-Block-diagram-of-a-typical-IoT-sensor-node.png">
 </p>
 
 The MCU serves as the controller for the IoT node to negotiate all transactions between devices. The wireless device is responsible for sending sensor data to the nearest internet gateway and, receiving control instructions from the gateway as well. The sensor measures environmental and other parameters (temperature, humidity, position, tilt, color, etc.) and the data is digitized and transmitted over the SPI/ I2C serial communication bus. The SRAM is used to buffer local data when a gateway is not available for communication.
