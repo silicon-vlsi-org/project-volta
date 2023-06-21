@@ -38,12 +38,14 @@ The next two sections detail the architecture of the timing to keep everything s
 Fig. 3 shows the timing diagram of the write operation. After the microcontroller selects the SRAM chip by pulling Chip-Select (CS) low, 2 bytes are transferred serially out on the output port (SDO) with data changing synchronously on every negative edge of the clock (SCLK). The first bit denotes whether the operation reads (1) or writes (0). The next 5 bits are assigned to the address of the SRAM and the last two bits are unused. The second byte contains the 8-bit data that needs to be written to the corresponding address. The controller latches the read/write bit after the first clock cycle and latches the address to the decoders at the end of the 6th clock cycle. Then the controller generates a pre-charge signal (pc) at the positive edge of the 14th cycle for one clock period. The data is latched for write at the positive edge of the last clock cycle (16th) and write control signals (wl, wr, col) are also asserted at the same edge and pulled low when the chip is de-selected (CS is high).
 <p align="center">
   <img src="/images/Fig3-Timing-diagram-of-write-operation.png">
+  Fig. 3: Timing diagram of write operation
 </p>
 
 ### C. Read Operation
 Fig. 4 shows the timing diagram for the read operation. The first byte of the read operation is the same as the write operation except, the pre-charge signal (pc) is asserted at the positive edge of the 7th clock cycle and the read enable signal (ren) is asserted for one clock cycle at the positive edge of the 8th clock cycle during which the data from the SRAM (DSNS[7:0]) is latched by a shift register at the negative edge of the 9th clock cycle. Once the data is latched, it is shifted bit by bit into the input port of the microcontroller (SDI).
 <p align="center">
   <img src="/images/Fig4-Timing-diagram-of-read-operation.png">
+  Fig. 4: Timing diagram of read operation
 </p>
 
 ## SRAM Design and Simulation Results
@@ -52,18 +54,21 @@ As discussed in the previous section, the complete SRAM design contains a 6-tran
 The core of the SRAM is a memory cell that stores one bit of information. Each cell’s area and power are critical since it decides the area and power of the entire chip. This design uses a standard 6T SRAM cell [1][2]. In principle, it is a back-to-back inverter (M_1,M_2,M_5,M_6) to store data indefinitely if power is provided to the cell. The access transistors (M_3,M_4) are used to read and write data into the cell. The sizing of the devices is decided by three main factors: the area of the cell, stored data in the memory cells is not corrupted while reading it, and able to overwrite the stored data during write operation. Analysis with the appropriate large-signal equations (saturation/linear) [1], it can be shown that M_3 needs to be stronger than M_5 and, M_1 needs to be stronger than M_3. Since the structure is symmetric, the same constraints apply for M_6,M_4,M_2. Since these constraints are unbounded, additional constraints are needed to choose the size of transistors in the 6T cell which is typically a trade-off between area and speed. In this design, the 6T transistors were sized for minimum area.
 <p align="center">
   <img src="/images/Fig5-6T-SRAM-cell-circuit-diagram.png">
+  Fig. 5: 6T SRAM cell circuit diagram
 </p>
 
 ### B. Pre-charge Circuit
 Since the output bitlines (bl and blb) of each 6T cell are shared by all the cells in the rows in that column, the parasitic capacitance on those nodes is very large making it impractical for the 6T cells to drive the bitlines to full CMOS voltage levels. Instead, both the bitlines are pre-charged to the same voltage, and a differential amplifier is used to sense the difference between the bitlines to read it. The nodes are also pre-charged before a write operation to reset a previous operation. As shown in Fig. 6, NMOS M_7 and M_8 are used to pre-charge the bitlines to VDD-VTN. Since the sensing mechanism is a differential operation, it is critical for both the bitlines to be equal in voltage for which PMOS M_9 is used. It should be noted that the bitlines are pre-charged to VDD-VTN instead of VDD. It is done to keep the differential sense amplifier active during the pre-charge phase. 
 <p align="center">
   <img src="/images/Fig6-Pre-charge-circuit.png">
+  Fig. 6: Pre-charge circuit
 </p>
 
 ### C. Row Decoder
 Fig. 7 shows a pass-transistor logic based 4:16 row decoder to select any row from the sixteen rows in the SRAM array based on the input address bit configurations. The 4-bit address signals a[3:0] are used to activate the transistors in such a way that, any one of the outputs will be high. For example, if all the address bits are low (0000), then wl[0] output will be high and this will select the 0th row in the SRAM array. Similarly, if all the address bits are high (1111), wl[15] output line will be high and that will select the 15th row of the SRAM array. Since the pass-transistor logic only passes high (VDD), a pull-down is required at the output.
 <p align="center">
   <img src="/images/Fig7-Row-decoder.png">
+  Fig. 7: Row decoder
 </p>
 
 Finally, a buffer is used to convert the output to CMOS levels and drive the large capacitance of the word line. The pull-down was realized using a 1uA current source (I_0). Please note that this was an experimental design to demonstrate a compact design but can be realized using standard static CMOS logic.
@@ -71,18 +76,21 @@ Finally, a buffer is used to convert the output to CMOS levels and drive the lar
 Fig. 8 shows the block diagram of column decoder logic. Based on the address, the column decoder selects the appropriate columns in the SRAM array. In this work, an 8-bit byte of data is either read from or written to the SRAM array. Therefore, from the 16 columns, a set of 8 is chosen based on the MSB of the address a[4]. Depending on if it’s a write (rwn=high) or read (rwn=low) operation, the decoder logic either allows the data from the write driver to be written to the cell or tri-states them. The bitlines are always connected to the input of the sense amplifier so in case of a read operation, the sense amplifiers are simply enabled at the appropriate time
 <p align="center">
   <img src="/images/Fig8-Contol-logic-and-column-decoder.jpg">
+  Fig. 8: Contol logic and column decoder
 </p>
 
 ### E. Sense Amplifier
 The sense amplifier is used to sense the voltage difference between the bitlines and amplify it to drive the digital circuits. There are different types of sense amplifiers are present [5,6] and used in the SRAM design depending upon the application which is typically a trade-off between area and power. In this work, an analog differential amplifier-based sense amplifier is implemented. Fig. 9 shows the differential amplifier-based sense amplifier. As shown in the figure, during the read operation a small voltage difference between the bitlines ‘bl’ and ‘blb’ is amplified by the sense amplifier and the buffer converts the output to rail-to-rail CMOS voltage. The gain of the amplifier and the threshold of the buffer is designed in tandem to achieve that function.
 <p align="center">
   <img src="/images/Fig9-Circuit-diagram-of-the-sense-amplifier.png">
+  Fig. 9: Circuit diagram of the sense amplifier
 </p>
 
 ### F. SPI Interface and SRAM Controller
 The core contribution of this work is to create all the control signals for the SRAM using only the SPI signals (SCLK, CS, SDO, SDI) without the need for any internal clock or bias which adds to the time and cost of the design. Fig. 10 shows the architecture of the SPI interface to the SRAM. 
 <p align="center">
   <img src="/images/Fig10-Architecture-of-SPI-SRAM-interface.jpg">
+  Fig. 10: Architecture of SPI-SRAM interface
 </p>
 
 Two 8-bit shift registers form the serial-parallel interface for read and write operation. The 4-bit synchronous counter and a set of comparators are used to keep track of the SPI clock. The SRAM control logic is a Mealy Finite State Machine (FSM) that uses the comparator output and the SPI signals to create the appropriate control logic (pc, wen, ren) for the SRAM read and write operation as detailed in the timing diagrams in Fig. 3 and Fig. 4.
@@ -90,14 +98,17 @@ Two 8-bit shift registers form the serial-parallel interface for read and write 
 Fig. 11 shows the chip layout and chip micrograph. A picture-schematic of the measurement setup is shown in Fig. 12. Analog discovery 2 (AD2) [7], a USB-based multi- instrument including an oscilloscope and logic analyzer, was used to test the read and write function of the SRAM using SPI protocol. Open-source Python API for AD2 was used to generate the SPI signals and the same AD2 was used as an oscilloscope to monitor the SPI signals.
 <p align="center">
   <img src="/images/Fig11-Chip-layout-and-chip-micrograph.jpg">
+  Fig. 11: Chip layout and chip micrograph
 </p>
 
 Fig. 13 shows an example output for an SPI write and read transaction. Date 0xDC is written into location 0x19 and the same location is read to verify the written data. As seen from the measurement result, the first bit on SDO is 0 denoting a write, the next five bit is the address 0x19 and the second word is 0xDC. The last two byte is a read operation of the same location and seen from the SDI output of the SRAM which is 0xDC.
 <p align="center">
   <img src="/images/Fig12-Picture-schematic-of-the-test-and-measurement-setup.png">
+  Fig. 12: Picture schematic of the test and measurement-setup
 </p>
 <p align="center">
   <img src="/images/Fig13-Mesurement-result.png">
+  Fig. 13: Measurement result of write operation to address 0x19 location followed by read operation of the same location.
 </p>
 
 ## Conclusion
