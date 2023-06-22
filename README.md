@@ -151,4 +151,21 @@ V_REF=V_BE3+V_T.R_2/R_1 .ln⁡(N)                             (1)
 
 Where, V_REF is the output reference voltage and V_T is the thermal voltage of the semiconductor.
 
+Typically, Op-Amp based BGR is preferred over self-biased for better power sup-ply rejection (PSR) performance and lower supply requirement. Although the self-biased BGR may have a lower performance in those two metrics, it is a simpler design consuming less area and power while achieving almost similar temperature drift per-formance. In most IC or SoC designs the self-biased BGR performance may suffice to allow less design time, lower risk, lower area and power which is always desirable for any SoC design. Moreover, the PSR in a self-biased BGR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5].
+
+In this paper an improved self-biased based bandgap reference circuit has been proposed which further lowers the area and power of the reference circuit while pre-serving the temperature coefficient performance. The improved circuit generates the reference voltage without using the separate reference-voltage branch as in the tradi-tional self-biased BGR.
+This paper is organized as follows: Section 2 describes the proposed architecture of the BGR along with its design procedure and circuit implementation. Simulation and measurement results are presented in Section 3, followed by a conclusion in Section 4.
+
+## Proposed Bandgap Reference
+Fig. 2 shows the core part of the proposed bandgap reference circuit. As evident from the figure, this modified circuit avoids a bi-polar device in the reference branch. Here the BJT Q_2 used for a dual purpose; firstly, it helps for generating a PTAT voltage across resistor R_1 and secondly, voltage across this adds with voltage across R_2 for generating reference voltage (V_REF) at the output node. This elegant modification in the traditional self-biased current mirror based BGR provides some great advantages particularly in power consumption and silicon area of the core circuit. These advantages are:
+-Since we eliminate the standard voltage-reference branch, the bi-polar device area reduces by approximately 20% and the PMOS current-mirror area reduces by approximately 30%. Note that, bi-polar devices and the current mirrors are a significant portion of the core BGR area.
+-One-third of the total current is reduced in the core BGR and therefore one-third reduction in power consumption in the core BGR circuit as well.
+
+The self-biased current mirror uses two P-MOS transistor 〖MP〗_1, 〖MP〗_2 and two N-MOS transistor 〖MN〗_1, 〖MN〗_2. These four transistor forms the self-biased feedback loop which makes the node voltages at ‘A’ and ‘B’ equal. The second branch of the circuit uses a single bi-polar device Q_2, which produces a CTAT voltage V_BE2  across the BJT Q_2, whereas, in the first branch, four parallel BJTs are connected with a resistor R_1 in series. As both the node voltages at ‘A’ and ‘B’ are the same and current flowing through both the BJTs are same, a PTAT voltage 〖dV〗_BE produced across resistor R_1. 
+〖dV〗_BE=V_BE2-V_BE1                                  (2)
+Where V_BE1 is voltage across the four parallel BJTs Q_1. 
+As V_BE2 is a CTAT voltage and 〖dV〗_BE is a PTAT voltage, so the addition of CTAT voltage with some appropriate constant multiplication of the PTAT voltage will generate a reference voltage which will be zero temperature coefficients at a reference temperature.
+The power-supply rejection (PSR) performance does not change significantly from the traditional self-biased BGR.  The PSR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. Our proposed integration of reference branch will also work with symmetric biasing as shown in [5].
+
+
 # I2C
