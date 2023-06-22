@@ -226,6 +226,9 @@ Fig. 5 and Fig. 6 shows the simulation results.
 <p align="center">
   <img src="/images/FIG6_BGR.png">
 </p>
+< allign="center">
+Fig. 6. Simulation result: VREF versus Temperature for different R2 trims
+</p>
 
 ### 3.1  Simulation Result
 The improved self-biased bandgap reference has been simulated with a commercially available Spectre simulator using the Process Design Kit (PDK) from the foundry. The first order temperature drift performance is simulated over the entire temperature range of -40ºC to 125ºC. A simulated reference voltage (V_REF) versus temperature curve is shown in Fig. 5. The calculated temperature coefficient (TC) from the figure is 6.3 ppm/ºC. Fig. 6, shows the parametric plot of VREF  versus temperature at all 32 (5-bit) trimming resistance values. The simulated PSR performance at room temperature for the improved BGR circuit is about 40 dB at DC and 35 dB at 1 kHz. The noise performance at room temperature is 4.34 µV/√Hz at 10 Hz and 1.47 µV/√Hz at 100Hz which is dominated by the flicker noise of current-mirrors, 〖MN〗_(1-2) (46%) and 〖MP〗_(1-3) (52%). The simulated average quiescent current is about 2 µA over the temperature range of -40ºC to 125ºC. Table 1 summarizes the simulation parameters and their corresponding simulated values.
