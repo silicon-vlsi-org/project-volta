@@ -14,7 +14,7 @@ Keywords- Static Random Access Memory, Serial Peripheral Interface, Internet-of-
 A typical Internet-of-Things (IoT) sensor node contains four main devices. As shown in Fig. 1, these four devices are; a sensor, a microcontroller unit (MCU), a wireless device (Bluetooth, WiFi, LoRa), and static random access memory (SRAM). Since sensor nodes work on low data rates and many sensors could interface to the controller, communicate among themselves over a serial bus such as the Serial Peripheral Interface (SPI) or Inter IC Communication (I2C) protocol to save space and keep the cost down.
 <p align="center">
   <img src="/images/Fig1-Block-diagram-of-a-typical-IoT-sensor-node.png">
-  **Fig.1: Block diagram of a typical IoT sensor node**
+  Fig.1: Block diagram of a typical IoT sensor node
 </p>
 
 
@@ -178,6 +178,11 @@ In this section, the expressions to calculate the resistance values of the core 
 
 R_1=V_T.ln⁡(4)/I_1                                     (3)
 
+<p align="center">
+  <img src="/images/FIG2_BGR.png">
+  Fig. 2. Core part of the proposed self-biased current mirror based BGR.
+</p>
+
 Where V_T is the thermal voltage of the semiconductor and its value at room temperature is approximately 25.8 mV. Applying the values of V_T and I_1 in equation (3), R_1 evaluates to 35.76 kΩ.
 The reference voltage can be calculated by combining the voltage across the BJT Q_2 (CTAT in nature) and the voltage across the resistor R_2 (PTAT in nature) as;
 V_REF=V_BE2+ V_R2                               (4)
@@ -195,24 +200,75 @@ For this modified architecture the current flowing through the resistor R_2 is h
 α= R_2/〖2R〗_1 .ln⁡(4)                                (8)
 Applying α and R_1 values in equation (8), R_2 evaluates to 971 kΩ.
 
+<p align="center">
+  <img src="/images/FIG3_BGR.png">
+  Fig. 3. Complete schematic diagram of the proposed BGR circuit.
+</p>
+
 ### 2.2  Implementation of Improved BGR
 Fig. 3 shows the complete implementation of the proposed BGR. 〖MP〗_(1-3), 〖MN〗_(1-2), R_(1-2), and Q_(1-2) forms the core part of the bandgap and the value of the resistors are calculated in the previous sub-section. 〖MPS〗_(1-2) and 〖MNS〗_1 form the startup circuitry since there are two stable states. 〖MP〗_B transistors are the PTAT current sources for biasing internal circuits. 〖MN〗_(1-2) are biased in the deep-sub-threshold (weak inversion) region to provide the maximum g_m⁄I_D  for a given bias current [6], which ensures the voltages of node ‘A’ and ‘B’ are only offset by the V_T mismatch of the 〖MN〗_(1-2) and the systematic offset of I_1 and I_2. Typically, (g_m⁄I_D )>20 ensures deep-sub-threshold operation. Please note that this offset is similar to an offset in an Op-Amp based BGR where the input referred offset of the Op-Amp is dominated by the V_T mismatch of the input pair of the differential amplifier which also biased in deep-subthreshold region for low-power application.
+
+<p align="center">
+  <img src="/images/FIG4_BGR.png">
+  Fig. 4. Implementation of the 5-bit trimmable resistor R2.
+</p>
 
 PMOS current mirrors 〖MP〗_(1-3) and 〖MP〗_B are biased in the saturation region where g_m⁄I_D  is typically less than 10 [6], to ensure the minimum systematic offset in I_1 and I_2. As mentioned before, this systematic offset can be minimized by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. The unit sizes of Q_1 and Q_2 are chosen to be the minimum allowable in the implemented technology and the ratio between them is chosen such that the area of Q_(1-2) and R_(1-2) is minimized. For the implemented technology, the BJT ratio 4:1 was found to be optimum. A high-sheet-rho poly resistor (R_sheet=3.76 kΩ/sq) was chosen to minimize the resistor area. In order to trim the output temperature coefficient (TC) of the BGR after fabrication, R_2 is a 5-bit programmable resistor is used as shown in Fig. 4, which is programmed through an Inter-IC Communication (I2C) protocol with a range of 890-940kΩ. Each of the programmable resistor in R_2 is made of series-parallel combination of unit resistors of 20kΩ. R_1 is also constructed from combination of same unit resistors so they can be matched in layout with R_2. During startup, 〖MPS〗_2 ensures that the current mirror is pulled out of the zero-V_gs state and once the circuit is operating normally (V_REF≈ 1.155), the voltage drop across 〖MNS〗_1 should be high enough that it shuts OFF 〖MPS〗_2. 〖MNS〗_1 needs to be sized such that there is no leakage current during normal operation. 〖MPS〗_1 provides a trickle current for 〖MNS〗_1 and 〖MNS〗_1 is sized with a very long length transistor to provide a large voltage drop for the minimum amount of current. For layout, special care is taken to match 〖MP〗_(1-3), 〖MN〗_(1-2), R_(1-2), and Q_(1-2) which affects the TC directly.
 
 ## 3  Simulation and Measurement Result
+
+<p align="center">
+  <img src="/images/FIG5_BGR.png">
+  Fig. 5. Simulation result: VREF-vs-Temperature (Tempco)
+</p>
+
+<p align="center">
+  <img src="/images/FIG6_BGR.png">
+  Fig. 6. Simulation result: VREF versus Temperature for different R2 trims
+</p>
+
 ### 3.1  Simulation Result
 The improved self-biased bandgap reference has been simulated with a commercially available Spectre simulator using the Process Design Kit (PDK) from the foundry. The first order temperature drift performance is simulated over the entire temperature range of -40ºC to 125ºC. A simulated reference voltage (V_REF) versus temperature curve is shown in Fig. 5. The calculated temperature coefficient (TC) from the figure is 6.3 ppm/ºC. Fig. 6, shows the parametric plot of VREF  versus temperature at all 32 (5-bit) trimming resistance values. The simulated PSR performance at room temperature for the improved BGR circuit is about 40 dB at DC and 35 dB at 1 kHz. The noise performance at room temperature is 4.34 µV/√Hz at 10 Hz and 1.47 µV/√Hz at 100Hz which is dominated by the flicker noise of current-mirrors, 〖MN〗_(1-2) (46%) and 〖MP〗_(1-3) (52%). The simulated average quiescent current is about 2 µA over the temperature range of -40ºC to 125ºC. Table 1 summarizes the simulation parameters and their corresponding simulated values.
+
+<p align="center">
+  <img src="/images/TABLE1_BGR.png">
+  Table 1. Summary of the Simulation Results.
+</p>
+
+<p align="center">
+  <img src="/images/FIG7_BGR.png">
+  Fig. 7. Chip micrograph and Layout of proposed BGR.
+</p>
 
 ### 3.2	Test Setup and Measurement Results
 This work has been fabricated in a commercially available 0.6µm CMOS technology. The proposed work has been integrated to provide a bias voltage to other blocks inside the chip. Fig. 7 shows the chip micrograph with highlighting the proposed BGR and its corresponding layout view. The whole BGR consumes 0.018 mm2 of silicon area inside the chip.
 
 At the time of this writing, ability to do a full temperature characterization using an environmental chamber along with R_2 trimming through I^2 C was unavailable. A functional test of the fabricated BGR was done using the test setup as shown in Fig. 8 with the R_2 set to the default value. For the functional test, the packaged silicon chip is mounted on a temporary prototype board to test the functionality. We used a buffer (OP-90) at the output of the chip to avoid loading from the low-impedance measurement device. A hot air stream was used to heat the device to temperatures between 25ºC to 100ºC from the top side of the chip.
 
+<p align="center">
+  <img src="/images/FIG8_BGR.png">
+  Fig. 8. Test Setup for the functional verification of the fabricated BGR
+</p>
+
 The temperature was changed by changing the distance between the source of the hot air stream and the device. The output of the BGR was measured using high preci-sion (6-1/2 digit) voltage meter (Keysight 34461A). After each temperature value settled, the temperature of the device was measured using a mounted laser-guided infrared thermometer. The device was powered using a programmable power supply (Keysight E3631A).
+
+<p align="center">
+  <img src="/images/FIG9_BGR.png">
+  Fig. 9. Temperature Coefficient (tempco) plot.
+</p>
+
+<p align="center">
+  <img src="/images/FIG10_BGR.png">
+  Fig. 10. Line Regulation plot.
+</p>
 
 Fig. 9 shows the measurement result of output voltage versus temperature. As seen from the result, the untrimmed temperature coefficient is strongly PTAT in nature (115 ppm/ºC). Some of the random mismatch pairs that could contribute to this are 〖MP〗_(2-3), R_1⁄R_2  ratio, Q_(1-2) and 〖MN〗_(1-2) as well. In simulation, when R_2 is increased by 6.5% and V_T offset value of σV_T/√A is applied between 〖MP〗_(2-3) and 〖MN〗_(1-2) the simulation results match the test result as shown in Fig. 9.
 For the same offsets added as for the tempco simulation, the line regulation in both simulations and measurements match closely showing a line regulation of 16 mV⁄V as shown in Fig 10. On availability of an environmental chamber, we will be able to get to the root of the tempco response by doing accurate temperature characterization for different R_2 trim value.
+
+<p align="center">
+  <img src="/images/TABLE2_BGR.png">
+  Table-2. Comparison of core performance specification with previously published work.
+</p>
 
 ## 4	Conclusion
 In this paper, 	a self-biased based BGR was improved for area and power by eliminating the reference-voltage branch and integrating it in the main core without compromising temperature drift performance. By using the CTAT voltage in the core of the BGR to generate the reference voltage (V_REF), the power consumption of the core and area of the BJTs reduces by 33% and 20% respectively. The BGR is implemented in a 0.6-µm CMOS process with an area of 0.018 mm^2 that includes the core bandgap and bias currents. This architecture greatly simplifies the design complexity with a temperature coefficient of 6.3 ppm/ºC for a temperature range of -40ºC to 125ºC from simulation. The simulated PSR is 35 dB at 1kHz which can be improved by using the cascode self-biased current mirror. This architecture gives a spot noise of 4.34(µV)⁄√Hz dominated by the flicker noise of NMOS and PMOS current-mirrors. The flicker noise can be reduced by increasing the area of those devices or chopping the current mirror. Table-2 shows a comparison of the core performances with previously published work.
