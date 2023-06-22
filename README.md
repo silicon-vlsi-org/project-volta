@@ -151,6 +151,11 @@ V_REF=V_BE3+V_T.R_2/R_1 .ln⁡(N)                             (1)
 
 Where, V_REF is the output reference voltage and V_T is the thermal voltage of the semiconductor.
 
+<p align="center">
+  <img src="/images/FIG1_BGR.png">
+  Fig. 1.  Traditional BGR circuits; (a) using Op-Amp, (b) using self-biased current mirror.
+</p>
+
 Typically, Op-Amp based BGR is preferred over self-biased for better power sup-ply rejection (PSR) performance and lower supply requirement. Although the self-biased BGR may have a lower performance in those two metrics, it is a simpler design consuming less area and power while achieving almost similar temperature drift per-formance. In most IC or SoC designs the self-biased BGR performance may suffice to allow less design time, lower risk, lower area and power which is always desirable for any SoC design. Moreover, the PSR in a self-biased BGR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5].
 
 In this paper an improved self-biased based bandgap reference circuit has been proposed which further lowers the area and power of the reference circuit while pre-serving the temperature coefficient performance. The improved circuit generates the reference voltage without using the separate reference-voltage branch as in the tradi-tional self-biased BGR.
