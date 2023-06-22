@@ -220,6 +220,7 @@ Fig. 5 and Fig. 6 shows the simulation results.
 
 <p align="center">
   <img src="/images/FIG5_BGR.PNG">
+  
   Fig. 5. Simulation result: VREF-vs-Temperature (Tempco)
 </p>
 
