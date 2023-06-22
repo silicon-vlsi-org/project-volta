@@ -1,4 +1,4 @@
-# Project Volta : SPI, I2C, SRAM and Bandgap Reference in 0.6"mu"m CMOS Technology.
+# Project Volta : SPI, I2C, SRAM and Bandgap Reference in 0.6um CMOS Technology.
 In this project 12 undergraduate students designed, simulated and tested a Serial Peripheral Interface (SPI) for a 32 byte Static Random Access Memory (SRAM) using an 0.6um CMOS Technology which can be used as a low power consuming device by integrating it with Microcontrollers (MCUs) and peripheral ICs ,for example IOT sensors. The project was accomplished using Tanner EDA tools to design, simulate and layout the circuits. This project also contained the other IPs 
 
 # Resources
