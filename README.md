@@ -137,7 +137,7 @@ We acknowledge the support of Deepika Kumari, Gautam Kumar, Pragya Tiwari, Samee
 ## SRAM Controller
 
 # Bandgap Reference
-# Title: A Power and Area Efficient CMOS Bandgap Reference Circuit with an Integrated Voltage-Reference Branch
+## Title: A Power and Area Efficient CMOS Bandgap Reference Circuit with an Integrated Voltage-Reference Branch
 ## *Abstract*
 This work presents a compact and low power bandgap voltage reference design using self-biased current mirror circuit. This design eliminates the standard com-plementary-to-absolute-temperature (CTAT) bipolar device in the voltage-reference branch, reducing the bipolar area by 20%. Instead, the design shares the same bipolar device in the main CTAT branch for generating the reference volt-age. An additional benefit of eliminating the voltage-reference branch is the re-duction of total power consumption by approximately 30%. This novel topology reduces power and area of the core bandgap reference circuit without compromis-ing temperature drift performance. Designed, fabricated and functionally tested in a 0.6um CMOS process. The simulation result shows the temperature coefficient of this design is 6.3 ppm/ºC for a temperature range of -40 ºC to 125 ºC. This bandgap reference design occupies a silicon area of 0.018 mm2 and draws an av-erage quiescent current of 2 µA from a supply voltage of 3.3-5V. The simulated flicker voltage noise is 4.34 µV/sqrt-Hz at 10 Hz.
 
