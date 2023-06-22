@@ -214,15 +214,10 @@ In this paper, 	a self-biased based BGR was improved for area and power by elimi
 
 ## References
 1.	R. Widlar,: New developments in IC voltage regulators. 1970 IEEE International Solid-State Circuits Conference. Digest of Technical Papers, 1970, vol. XIII, pp. 158–159
-
 2.	Y. Ji, C. Jeon, H. Son, B. Kim, H. Park, and J. Sim,: “5.8 A 9.3nW all-in-one bandgap volt-age and current reference circuit,” in 2017 IEEE International Solid-State Circuits Confer-ence (ISSCC), 2017, pp. 100–101
-  
 3.	W. Wu, W. Zhiping, and Z. Yongxue, “An Improved CMOS Bandgap Reference with Self-biased Cascoded Current Mirrors,” in 2007 IEEE Conference on Electron Devices and Sol-id-State Circuits, 2007, pp. 945–948.
-  
 4.	P. E. Allen and D. R. Holberg,: CMOS Analog Circuit Design. OUP USA (2012)
-   
 5.	Y. Lam and W. Ki, “CMOS Bandgap References With Self-Biased Symmetrically Matched Current–Voltage Mirror and Extension of Sub-1-V Design,” IEEE Transactions on Very Large Scale Integration (VLSI) Systems, vol. 18, no. 6, pp. 857–865, Jun. 2010.
- 
 6.	R. R. Harrison and C. Charles, “A low-power low-noise CMOS amplifier for neural record-ing applications,” IEEE Journal of Solid-State Circuits, vol. 38, no. 6, pp. 958–965, Jun. 2003.
 
 # I2C
