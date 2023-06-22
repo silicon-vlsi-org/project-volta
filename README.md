@@ -219,7 +219,7 @@ PMOS current mirrors 〖MP〗_(1-3) and 〖MP〗_B are biased in the saturation 
 Fig. 5 and Fig. 6 shows the simulation results.
 
 <p align="center">
-  <img src="/images/FIG5_BGR.png">
+  <img src="/images/FIG5_BGR.PNG">
   Fig. 5. Simulation result: VREF-vs-Temperature (Tempco)
 </p>
 
