@@ -225,7 +225,6 @@ Fig. 5 and Fig. 6 shows the simulation results.
 
 <p align="center">
   <img src="/images/FIG6_BGR.png">
-  Fig. 6. Simulation result: VREF versus Temperature for different R2 trims
 </p>
 
 ### 3.1  Simulation Result
