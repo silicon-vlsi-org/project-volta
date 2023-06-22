@@ -117,7 +117,6 @@ A SRAM design in 0.6μm CMOS technology is demonstrated to be a viable candidate
 We acknowledge the support of Deepika Kumari, Gautam Kumar, Pragya Tiwari, Sameer Namdeo, ShivaPrasad Das, Suruchi Kumari, Unnati Kumari Gupta, Anshuman Mishra, Sneha Kumari, Manamohan Nath, Prachi Mrudula and Vishal Sao for their help in simulation and layout.
 ## *References*
 [1]	Leblebici, Y., Kim, C. W., & Kang, S.-M. “CMOS Digital Integrated Circuits Analysis & Design” 4th-Ed McGraw-Hill Ed, 2014.
-
 [2]	H. E. Weste, D. M. Harris “CMOS VLSI Design: A Circuits and Systems Perspective” Fourth edition, Pearson Education, 2010.
 
 [3]	Leens, F. “An introduction to I2C and SPI protocols”. IEEE Instrumentation Measurement Magazine, 12(1), pp. 8–13., 2009 https://doi.org/10.1109/MIM.2009.4762946
