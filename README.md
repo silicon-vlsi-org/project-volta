@@ -186,19 +186,33 @@ R_1=V_T.ln⁡(4)/I_1                                     (3)
 
 Where V_T is the thermal voltage of the semiconductor and its value at room temperature is approximately 25.8 mV. Applying the values of V_T and I_1 in equation (3), R_1 evaluates to 35.76 kΩ.
 The reference voltage can be calculated by combining the voltage across the BJT Q_2 (CTAT in nature) and the voltage across the resistor R_2 (PTAT in nature) as;
+
 V_REF=V_BE2+ V_R2                               (4)
+
 Where, V_R2 is the PTAT voltage across the resistor R_2 and can be expressed as:
+
 V_R2=V_T.R_2/R_1 .ln⁡(4)                              (5)
+
 Equation (4) can be rewritten as;
+
 V_REF=V_BE2+α.V_T                           (6)
+
 Where, α= R_2/R_1 .ln⁡(4)   is a constant.
+
 For calculating zero temperature coefficient reference voltage at the reference temperature, the derivative of V_REF should be zero.
+
 (∂V_REF)/∂T=  ∂(V_BE2+α.V_T )/∂T=0                    (7)
+
 Using  (∂V_BE2)/∂T=-1.6 mV/ºC  and  (∂V_T)/∂T=85 µV/ºC [4] in equation (7), α evaluates to 18.82. 
+
 Now we can calculate V_REF value from the equation (6) as:
+
 V_REF=0.67V+18.82× 25.8 µV=1.155 V
+
 For this modified architecture the current flowing through the resistor R_2 is half of that current flowing in the resistor R_1. So, the constant α for this circuit will be;
+
 α= R_2/〖2R〗_1 .ln⁡(4)                                (8)
+
 Applying α and R_1 values in equation (8), R_2 evaluates to 971 kΩ.
 
 <p align="center">
