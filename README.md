@@ -156,7 +156,7 @@ Typically, Op-Amp based BGR is preferred over self-biased for better power sup-p
 In this paper an improved self-biased based bandgap reference circuit has been proposed which further lowers the area and power of the reference circuit while pre-serving the temperature coefficient performance. The improved circuit generates the reference voltage without using the separate reference-voltage branch as in the tradi-tional self-biased BGR.
 This paper is organized as follows: Section 2 describes the proposed architecture of the BGR along with its design procedure and circuit implementation. Simulation and measurement results are presented in Section 3, followed by a conclusion in Section 4.
 
-## Proposed Bandgap Reference
+## 2  Proposed Bandgap Reference
 Fig. 2 shows the core part of the proposed bandgap reference circuit. As evident from the figure, this modified circuit avoids a bi-polar device in the reference branch. Here the BJT Q_2 used for a dual purpose; firstly, it helps for generating a PTAT voltage across resistor R_1 and secondly, voltage across this adds with voltage across R_2 for generating reference voltage (V_REF) at the output node. This elegant modification in the traditional self-biased current mirror based BGR provides some great advantages particularly in power consumption and silicon area of the core circuit. These advantages are:
 
 - Since we eliminate the standard voltage-reference branch, the bi-polar device area reduces by approximately 20% and the PMOS current-mirror area reduces by approximately 30%. Note that, bi-polar devices and the current mirrors are a significant portion of the core BGR area.
@@ -167,6 +167,7 @@ The self-biased current mirror uses two P-MOS transistor 〖MP〗_1, 〖MP〗_2 
 Where V_BE1 is voltage across the four parallel BJTs Q_1. 
 As V_BE2 is a CTAT voltage and 〖dV〗_BE is a PTAT voltage, so the addition of CTAT voltage with some appropriate constant multiplication of the PTAT voltage will generate a reference voltage which will be zero temperature coefficients at a reference temperature.
 The power-supply rejection (PSR) performance does not change significantly from the traditional self-biased BGR.  The PSR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. Our proposed integration of reference branch will also work with symmetric biasing as shown in [5].
+### 2.1  Design Procedure of Improved BGR
 
 
 # I2C
