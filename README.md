@@ -252,7 +252,7 @@ At the time of this writing, ability to do a full temperature characterization u
 <p align="center">
   <img src="/images/FIG8_BGR.png">
   
-  Fig. 8. Test Setup for the functional verification of the fabricated BGR
+                                  Fig. 8. Test Setup for the functional verification of the fabricated BGR
 </p>
 
 The temperature was changed by changing the distance between the source of the hot air stream and the device. The output of the BGR was measured using high preci-sion (6-1/2 digit) voltage meter (Keysight 34461A). After each temperature value settled, the temperature of the device was measured using a mounted laser-guided infrared thermometer. The device was powered using a programmable power supply (Keysight E3631A).
