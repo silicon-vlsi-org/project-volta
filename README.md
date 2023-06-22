@@ -167,7 +167,43 @@ The self-biased current mirror uses two P-MOS transistor 〖MP〗_1, 〖MP〗_2 
 Where V_BE1 is voltage across the four parallel BJTs Q_1. 
 As V_BE2 is a CTAT voltage and 〖dV〗_BE is a PTAT voltage, so the addition of CTAT voltage with some appropriate constant multiplication of the PTAT voltage will generate a reference voltage which will be zero temperature coefficients at a reference temperature.
 The power-supply rejection (PSR) performance does not change significantly from the traditional self-biased BGR.  The PSR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. Our proposed integration of reference branch will also work with symmetric biasing as shown in [5].
+
 ### 2.1  Design Procedure of Improved BGR
+In this section, the expressions to calculate the resistance values of the core BGR circuit for a current value will be shown. For a low power BGR, Q_1 and Q_2 were each biased with 1µA. Given the bias current,  R_1 can be expressed as:
+
+R_1=V_T.ln⁡(4)/I_1                                     (3)
+
+Where V_T is the thermal voltage of the semiconductor and its value at room temperature is approximately 25.8 mV. Applying the values of V_T and I_1 in equation (3), R_1 evaluates to 35.76 kΩ.
+The reference voltage can be calculated by combining the voltage across the BJT Q_2 (CTAT in nature) and the voltage across the resistor R_2 (PTAT in nature) as;
+V_REF=V_BE2+ V_R2                               (4)
+Where, V_R2 is the PTAT voltage across the resistor R_2 and can be expressed as:
+V_R2=V_T.R_2/R_1 .ln⁡(4)                              (5)
+Equation (4) can be rewritten as;
+V_REF=V_BE2+α.V_T                           (6)
+Where, α= R_2/R_1 .ln⁡(4)   is a constant.
+For calculating zero temperature coefficient reference voltage at the reference temperature, the derivative of V_REF should be zero.
+(∂V_REF)/∂T=  ∂(V_BE2+α.V_T )/∂T=0                    (7)
+Using  (∂V_BE2)/∂T=-1.6 mV/ºC  and  (∂V_T)/∂T=85 µV/ºC [4] in equation (7), α evaluates to 18.82. 
+Now we can calculate V_REF value from the equation (6) as:
+V_REF=0.67V+18.82× 25.8 µV=1.155 V
+For this modified architecture the current flowing through the resistor R_2 is half of that current flowing in the resistor R_1. So, the constant α for this circuit will be;
+α= R_2/〖2R〗_1 .ln⁡(4)                                (8)
+Applying α and R_1 values in equation (8), R_2 evaluates to 971 kΩ.
+
+### 2.2  Implementation of Improved BGR
+Fig. 3 shows the complete implementation of the proposed BGR. 〖MP〗_(1-3), 〖MN〗_(1-2), R_(1-2), and Q_(1-2) forms the core part of the bandgap and the value of the resistors are calculated in the previous sub-section. 〖MPS〗_(1-2) and 〖MNS〗_1 form the startup circuitry since there are two stable states. 〖MP〗_B transistors are the PTAT current sources for biasing internal circuits. 〖MN〗_(1-2) are biased in the deep-sub-threshold (weak inversion) region to provide the maximum g_m⁄I_D  for a given bias current [6], which ensures the voltages of node ‘A’ and ‘B’ are only offset by the V_T mismatch of the 〖MN〗_(1-2) and the systematic offset of I_1 and I_2. Typically, (g_m⁄I_D )>20 ensures deep-sub-threshold operation. Please note that this offset is similar to an offset in an Op-Amp based BGR where the input referred offset of the Op-Amp is dominated by the V_T mismatch of the input pair of the differential amplifier which also biased in deep-subthreshold region for low-power application.
+
+PMOS current mirrors 〖MP〗_(1-3) and 〖MP〗_B are biased in the saturation region where g_m⁄I_D  is typically less than 10 [6], to ensure the minimum systematic offset in I_1 and I_2. As mentioned before, this systematic offset can be minimized by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. The unit sizes of Q_1 and Q_2 are chosen to be the minimum allowable in the implemented technology and the ratio between them is chosen such that the area of Q_(1-2) and R_(1-2) is minimized. For the implemented technology, the BJT ratio 4:1 was found to be optimum. A high-sheet-rho poly resistor (R_sheet=3.76 kΩ/sq) was chosen to minimize the resistor area. In order to trim the output temperature coefficient (TC) of the BGR after fabrication, R_2 is a 5-bit programmable resistor is used as shown in Fig. 4, which is programmed through an Inter-IC Communication (I2C) protocol with a range of 890-940kΩ. Each of the programmable resistor in R_2 is made of series-parallel combination of unit resistors of 20kΩ. R_1 is also constructed from combination of same unit resistors so they can be matched in layout with R_2. During startup, 〖MPS〗_2 ensures that the current mirror is pulled out of the zero-V_gs state and once the circuit is operating normally (V_REF≈ 1.155), the voltage drop across 〖MNS〗_1 should be high enough that it shuts OFF 〖MPS〗_2. 〖MNS〗_1 needs to be sized such that there is no leakage current during normal operation. 〖MPS〗_1 provides a trickle current for 〖MNS〗_1 and 〖MNS〗_1 is sized with a very long length transistor to provide a large voltage drop for the minimum amount of current. For layout, special care is taken to match 〖MP〗_(1-3), 〖MN〗_(1-2), R_(1-2), and Q_(1-2) which affects the TC directly.
+
+## 3  Simulation and Measurement Result
+### 3.1  Simulation Result
+The improved self-biased bandgap reference has been simulated with a commercially available Spectre simulator using the Process Design Kit (PDK) from the foundry. The first order temperature drift performance is simulated over the entire temperature range of -40ºC to 125ºC. A simulated reference voltage (V_REF) versus temperature curve is shown in Fig. 5. The calculated temperature coefficient (TC) from the figure is 6.3 ppm/ºC. Fig. 6, shows the parametric plot of VREF  versus temperature at all 32 (5-bit) trimming resistance values. The simulated PSR performance at room temperature for the improved BGR circuit is about 40 dB at DC and 35 dB at 1 kHz. The noise performance at room temperature is 4.34 µV/√Hz at 10 Hz and 1.47 µV/√Hz at 100Hz which is dominated by the flicker noise of current-mirrors, 〖MN〗_(1-2) (46%) and 〖MP〗_(1-3) (52%). The simulated average quiescent current is about 2 µA over the temperature range of -40ºC to 125ºC. Table 1 summarizes the simulation parameters and their corresponding simulated values.
+
+Technology	0.6µm CMOS 		Temperature Coefficient	6.3 ppm/ºC
+Power Supply Voltage	3.3-5V		Line regulation	16 mV/V
+Temperature Range	-40ºC to 125ºC		Flicker Noise@10 Hz	4.34 µV/√Hz
+Reference Voltage (VREF)	1.15 V		PSR @ DC/1kHz	40 dB / 35 dB
+Quiescent Current 	2.08 µA			
 
 
 # I2C
