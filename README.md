@@ -169,7 +169,9 @@ Fig. 2 shows the core part of the proposed bandgap reference circuit. As evident
 - One-third of the total current is reduced in the core BGR and therefore one-third reduction in power consumption in the core BGR circuit as well.
 
 The self-biased current mirror uses two P-MOS transistor 〖MP〗_1, 〖MP〗_2 and two N-MOS transistor 〖MN〗_1, 〖MN〗_2. These four transistor forms the self-biased feedback loop which makes the node voltages at ‘A’ and ‘B’ equal. The second branch of the circuit uses a single bi-polar device Q_2, which produces a CTAT voltage V_BE2  across the BJT Q_2, whereas, in the first branch, four parallel BJTs are connected with a resistor R_1 in series. As both the node voltages at ‘A’ and ‘B’ are the same and current flowing through both the BJTs are same, a PTAT voltage 〖dV〗_BE produced across resistor R_1. 
+
 〖dV〗_BE=V_BE2-V_BE1 ------------------------------------------(2)
+
 Where V_BE1 is voltage across the four parallel BJTs Q_1. 
 As V_BE2 is a CTAT voltage and 〖dV〗_BE is a PTAT voltage, so the addition of CTAT voltage with some appropriate constant multiplication of the PTAT voltage will generate a reference voltage which will be zero temperature coefficients at a reference temperature.
 The power-supply rejection (PSR) performance does not change significantly from the traditional self-biased BGR.  The PSR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. Our proposed integration of reference branch will also work with symmetric biasing as shown in [5].
