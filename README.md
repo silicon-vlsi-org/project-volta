@@ -148,7 +148,7 @@ Voltage reference circuits are an essential block in most applications from a si
 
 Fig. 1 shows two type of traditional BGR circuit: (a) one using operational amplifier (Op-Amp) and (b) using a self-biased current mirror circuit [3]. The principle of operations is the same in both cases where the nodes ‘A’ and ‘B’ are forced to be the same by (a) the Op-Amp or (b) the self-biased current mirror. Forcing same node voltages makes the voltage drop across R_1 be exactly difference between the base-to-emitter voltage (V_BE) of the two bi-polar transistor provided that, the size of the transistor Q_1=N.Q_2. The voltage across the resistor R_1 produces a proportional-to-absolute-temperature (PTAT) voltage, which is multiplied with a suitable constant and added to V_BE of Q_3 to generate a stable voltage [4] as follows:
 
-V_REF=V_BE3+V_T.R_2/R_1 .ln⁡(N)                             (1)
+V_REF=V_BE3+V_T.R_2/R_1 .ln⁡(N) -------------------------------(1)
 
 Where, V_REF is the output reference voltage and V_T is the thermal voltage of the semiconductor.
 
@@ -169,7 +169,7 @@ Fig. 2 shows the core part of the proposed bandgap reference circuit. As evident
 - One-third of the total current is reduced in the core BGR and therefore one-third reduction in power consumption in the core BGR circuit as well.
 
 The self-biased current mirror uses two P-MOS transistor 〖MP〗_1, 〖MP〗_2 and two N-MOS transistor 〖MN〗_1, 〖MN〗_2. These four transistor forms the self-biased feedback loop which makes the node voltages at ‘A’ and ‘B’ equal. The second branch of the circuit uses a single bi-polar device Q_2, which produces a CTAT voltage V_BE2  across the BJT Q_2, whereas, in the first branch, four parallel BJTs are connected with a resistor R_1 in series. As both the node voltages at ‘A’ and ‘B’ are the same and current flowing through both the BJTs are same, a PTAT voltage 〖dV〗_BE produced across resistor R_1. 
-〖dV〗_BE=V_BE2-V_BE1                                  (2)
+〖dV〗_BE=V_BE2-V_BE1 ------------------------------------------(2)
 Where V_BE1 is voltage across the four parallel BJTs Q_1. 
 As V_BE2 is a CTAT voltage and 〖dV〗_BE is a PTAT voltage, so the addition of CTAT voltage with some appropriate constant multiplication of the PTAT voltage will generate a reference voltage which will be zero temperature coefficients at a reference temperature.
 The power-supply rejection (PSR) performance does not change significantly from the traditional self-biased BGR.  The PSR can be improved by using cascode current mirrors [3] or symmetric biasing of both the branches [5]. Our proposed integration of reference branch will also work with symmetric biasing as shown in [5].
@@ -187,21 +187,21 @@ R_1=V_T.ln⁡(4)/I_1 ---------------------------------------------(3)
 Where V_T is the thermal voltage of the semiconductor and its value at room temperature is approximately 25.8 mV. Applying the values of V_T and I_1 in equation (3), R_1 evaluates to 35.76 kΩ.
 The reference voltage can be calculated by combining the voltage across the BJT Q_2 (CTAT in nature) and the voltage across the resistor R_2 (PTAT in nature) as;
 
-V_REF=V_BE2+ V_R2                               (4)
+V_REF=V_BE2+ V_R2 --------------------------------------------(4)
 
 Where, V_R2 is the PTAT voltage across the resistor R_2 and can be expressed as:
 
-V_R2=V_T.R_2/R_1 .ln⁡(4)                              (5)
+V_R2=V_T.R_2/R_1 .ln⁡(4) --------------------------------------(5)
 
 Equation (4) can be rewritten as;
 
-V_REF=V_BE2+α.V_T                           (6)
+V_REF=V_BE2+α.V_T --------------------------------------------(6)
 
 Where, α= R_2/R_1 .ln⁡(4)   is a constant.
 
 For calculating zero temperature coefficient reference voltage at the reference temperature, the derivative of V_REF should be zero.
 
-(∂V_REF)/∂T=  ∂(V_BE2+α.V_T )/∂T=0                    (7)
+(∂V_REF)/∂T=  ∂(V_BE2+α.V_T )/∂T=0 ---------------------------(7)
 
 Using  (∂V_BE2)/∂T=-1.6 mV/ºC  and  (∂V_T)/∂T=85 µV/ºC [4] in equation (7), α evaluates to 18.82. 
 
@@ -211,7 +211,7 @@ V_REF=0.67V+18.82× 25.8 µV=1.155 V
 
 For this modified architecture the current flowing through the resistor R_2 is half of that current flowing in the resistor R_1. So, the constant α for this circuit will be;
 
-α= R_2/〖2R〗_1 .ln⁡(4)                                (8)
+α= R_2/〖2R〗_1 .ln⁡(4) ---------------------------------------(8)
 
 Applying α and R_1 values in equation (8), R_2 evaluates to 971 kΩ.
 
