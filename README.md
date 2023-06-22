@@ -199,11 +199,30 @@ PMOS current mirrors 〖MP〗_(1-3) and 〖MP〗_B are biased in the saturation 
 ### 3.1  Simulation Result
 The improved self-biased bandgap reference has been simulated with a commercially available Spectre simulator using the Process Design Kit (PDK) from the foundry. The first order temperature drift performance is simulated over the entire temperature range of -40ºC to 125ºC. A simulated reference voltage (V_REF) versus temperature curve is shown in Fig. 5. The calculated temperature coefficient (TC) from the figure is 6.3 ppm/ºC. Fig. 6, shows the parametric plot of VREF  versus temperature at all 32 (5-bit) trimming resistance values. The simulated PSR performance at room temperature for the improved BGR circuit is about 40 dB at DC and 35 dB at 1 kHz. The noise performance at room temperature is 4.34 µV/√Hz at 10 Hz and 1.47 µV/√Hz at 100Hz which is dominated by the flicker noise of current-mirrors, 〖MN〗_(1-2) (46%) and 〖MP〗_(1-3) (52%). The simulated average quiescent current is about 2 µA over the temperature range of -40ºC to 125ºC. Table 1 summarizes the simulation parameters and their corresponding simulated values.
 
-Technology	0.6µm CMOS 		Temperature Coefficient	6.3 ppm/ºC
-Power Supply Voltage	3.3-5V		Line regulation	16 mV/V
-Temperature Range	-40ºC to 125ºC		Flicker Noise@10 Hz	4.34 µV/√Hz
-Reference Voltage (VREF)	1.15 V		PSR @ DC/1kHz	40 dB / 35 dB
-Quiescent Current 	2.08 µA			
+### 3.2	Test Setup and Measurement Results
+This work has been fabricated in a commercially available 0.6µm CMOS technology. The proposed work has been integrated to provide a bias voltage to other blocks inside the chip. Fig. 7 shows the chip micrograph with highlighting the proposed BGR and its corresponding layout view. The whole BGR consumes 0.018 mm2 of silicon area inside the chip.
 
+At the time of this writing, ability to do a full temperature characterization using an environmental chamber along with R_2 trimming through I^2 C was unavailable. A functional test of the fabricated BGR was done using the test setup as shown in Fig. 8 with the R_2 set to the default value. For the functional test, the packaged silicon chip is mounted on a temporary prototype board to test the functionality. We used a buffer (OP-90) at the output of the chip to avoid loading from the low-impedance measurement device. A hot air stream was used to heat the device to temperatures between 25ºC to 100ºC from the top side of the chip.
+
+The temperature was changed by changing the distance between the source of the hot air stream and the device. The output of the BGR was measured using high preci-sion (6-1/2 digit) voltage meter (Keysight 34461A). After each temperature value settled, the temperature of the device was measured using a mounted laser-guided infrared thermometer. The device was powered using a programmable power supply (Keysight E3631A).
+
+Fig. 9 shows the measurement result of output voltage versus temperature. As seen from the result, the untrimmed temperature coefficient is strongly PTAT in nature (115 ppm/ºC). Some of the random mismatch pairs that could contribute to this are 〖MP〗_(2-3), R_1⁄R_2  ratio, Q_(1-2) and 〖MN〗_(1-2) as well. In simulation, when R_2 is increased by 6.5% and V_T offset value of σV_T/√A is applied between 〖MP〗_(2-3) and 〖MN〗_(1-2) the simulation results match the test result as shown in Fig. 9.
+For the same offsets added as for the tempco simulation, the line regulation in both simulations and measurements match closely showing a line regulation of 16 mV⁄V as shown in Fig 10. On availability of an environmental chamber, we will be able to get to the root of the tempco response by doing accurate temperature characterization for different R_2 trim value.
+
+## 4	Conclusion
+In this paper, 	a self-biased based BGR was improved for area and power by eliminating the reference-voltage branch and integrating it in the main core without compromising temperature drift performance. By using the CTAT voltage in the core of the BGR to generate the reference voltage (V_REF), the power consumption of the core and area of the BJTs reduces by 33% and 20% respectively. The BGR is implemented in a 0.6-µm CMOS process with an area of 0.018 mm^2 that includes the core bandgap and bias currents. This architecture greatly simplifies the design complexity with a temperature coefficient of 6.3 ppm/ºC for a temperature range of -40ºC to 125ºC from simulation. The simulated PSR is 35 dB at 1kHz which can be improved by using the cascode self-biased current mirror. This architecture gives a spot noise of 4.34(µV)⁄√Hz dominated by the flicker noise of NMOS and PMOS current-mirrors. The flicker noise can be reduced by increasing the area of those devices or chopping the current mirror. Table-2 shows a comparison of the core performances with previously published work.
+
+## References
+1.	R. Widlar,: New developments in IC voltage regulators. 1970 IEEE International Solid-State Circuits Conference. Digest of Technical Papers, 1970, vol. XIII, pp. 158–159
+
+2.	Y. Ji, C. Jeon, H. Son, B. Kim, H. Park, and J. Sim,: “5.8 A 9.3nW all-in-one bandgap volt-age and current reference circuit,” in 2017 IEEE International Solid-State Circuits Confer-ence (ISSCC), 2017, pp. 100–101
+  
+3.	W. Wu, W. Zhiping, and Z. Yongxue, “An Improved CMOS Bandgap Reference with Self-biased Cascoded Current Mirrors,” in 2007 IEEE Conference on Electron Devices and Sol-id-State Circuits, 2007, pp. 945–948.
+  
+4.	P. E. Allen and D. R. Holberg,: CMOS Analog Circuit Design. OUP USA (2012)
+   
+5.	Y. Lam and W. Ki, “CMOS Bandgap References With Self-Biased Symmetrically Matched Current–Voltage Mirror and Extension of Sub-1-V Design,” IEEE Transactions on Very Large Scale Integration (VLSI) Systems, vol. 18, no. 6, pp. 857–865, Jun. 2010.
+ 
+6.	R. R. Harrison and C. Charles, “A low-power low-noise CMOS amplifier for neural record-ing applications,” IEEE Journal of Solid-State Circuits, vol. 38, no. 6, pp. 958–965, Jun. 2003.
 
 # I2C
