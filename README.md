@@ -177,7 +177,7 @@ The power-supply rejection (PSR) performance does not change significantly from 
 ### 2.1  Design Procedure of Improved BGR
 In this section, the expressions to calculate the resistance values of the core BGR circuit for a current value will be shown. For a low power BGR, Q_1 and Q_2 were each biased with 1µA. Given the bias current,  R_1 can be expressed as:
 
-R_1=V_T.ln⁡(4)/I_1                                     (3)
+R_1=V_T.ln⁡(4)/I_1 ---------------------------------------------(3)
 
 <p align="center">
   <img src="/images/FIG2_BGR.png">
