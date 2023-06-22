@@ -251,6 +251,7 @@ At the time of this writing, ability to do a full temperature characterization u
 
 <p align="center">
   <img src="/images/FIG8_BGR.png">
+  
   Fig. 8. Test Setup for the functional verification of the fabricated BGR
 </p>
 
