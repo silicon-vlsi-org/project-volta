@@ -115,7 +115,7 @@ Fig. 13 shows an example output for an SPI write and read transaction. Date 0xDC
 A SRAM design in 0.6μm CMOS technology is demonstrated to be a viable candidate for IoT-based sensor nodes. Deriving all the internal signals from the SPI signals allows IoT designers to scale the power directly through the access rates. It also keeps the design simple to keep design costs to a minimum. Additionally, this project can also be used as a tapeout-based course project in the undergraduate curriculum to give the students an end-to-end experience in IC design. 0.6um CMOS process is an old and mature process making it a low-cost technology allowing educational institutions to make fabrication cost affordable.
 ## Acknowledgement
 We acknowledge the support of Deepika Kumari, Gautam Kumar, Pragya Tiwari, Sameer Namdeo, ShivaPrasad Das, Suruchi Kumari, Unnati Kumari Gupta, Anshuman Mishra, Sneha Kumari, Manamohan Nath, Prachi Mrudula and Vishal Sao for their help in simulation and layout.
-## References
+## *References*
 [1]	Leblebici, Y., Kim, C. W., & Kang, S.-M. “CMOS Digital Integrated Circuits Analysis & Design” 4th-Ed McGraw-Hill Ed, 2014.
 
 [2]	H. E. Weste, D. M. Harris “CMOS VLSI Design: A Circuits and Systems Perspective” Fourth edition, Pearson Education, 2010.
