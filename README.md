@@ -281,7 +281,7 @@ The temperature was changed by changing the distance between the source of the h
   Fig. 10. Line Regulation plot.
 </p>
 
-Fig. 9 shows the measurement result of output voltage versus temperature. As seen from the result, the untrimmed temperature coefficient is strongly PTAT in nature (115 ppm/ºC). Some of the random mismatch pairs that could contribute to this are 〖MP〗_(2-3), R_1⁄R_2  ratio, Q_(1-2) and 〖MN〗_(1-2) as well. In simulation, when R_2 is increased by 6.5% and V_T offset value of σV_T/√A is applied between 〖MP〗_(2-3) and 〖MN〗_(1-2) the simulation results match the test result as shown in Fig. 9.
+Fig. 9 shows the measurement result of output voltage versus temperature. As seen from the result, the untrimmed temperature coefficient is strongly PTAT in nature (115 ppm/ºC). Some of the random mismatch pairs that could contribute to this are 〖MP〗_(2-3), R_1 ⁄R_2  ratio, Q_(1-2) and 〖MN〗_(1-2) as well. In simulation, when R_2 is increased by 6.5% and V_T offset value of σV_T/√A is applied between 〖MP〗_(2-3) and 〖MN〗_(1-2) the simulation results match the test result as shown in Fig. 9.
 For the same offsets added as for the tempco simulation, the line regulation in both simulations and measurements match closely showing a line regulation of 16 mV⁄V as shown in Fig 10. On availability of an environmental chamber, we will be able to get to the root of the tempco response by doing accurate temperature characterization for different R_2 trim value.
 
 <p align="center">
@@ -300,4 +300,3 @@ In this paper, 	a self-biased based BGR was improved for area and power by elimi
 5.	Y. Lam and W. Ki, “CMOS Bandgap References With Self-Biased Symmetrically Matched Current–Voltage Mirror and Extension of Sub-1-V Design,” IEEE Transactions on Very Large Scale Integration (VLSI) Systems, vol. 18, no. 6, pp. 857–865, Jun. 2010.
 6.	R. R. Harrison and C. Charles, “A low-power low-noise CMOS amplifier for neural record-ing applications,” IEEE Journal of Solid-State Circuits, vol. 38, no. 6, pp. 958–965, Jun. 2003.
 
-# I2C
