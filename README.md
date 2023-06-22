@@ -14,7 +14,7 @@ Keywords- Static Random Access Memory, Serial Peripheral Interface, Internet-of-
 A typical Internet-of-Things (IoT) sensor node contains four main devices. As shown in Fig. 1, these four devices are; a sensor, a microcontroller unit (MCU), a wireless device (Bluetooth, WiFi, LoRa), and static random access memory (SRAM). Since sensor nodes work on low data rates and many sensors could interface to the controller, communicate among themselves over a serial bus such as the Serial Peripheral Interface (SPI) or Inter IC Communication (I2C) protocol to save space and keep the cost down.
 <p align="center">
   <img src="/images/Fig1-Block-diagram-of-a-typical-IoT-sensor-node.png">
-  Fig.1: Block diagram of a typical IoT sensor node
+  **Fig.1: Block diagram of a typical IoT sensor node**
 </p>
 
 
