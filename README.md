@@ -131,7 +131,7 @@ We acknowledge the support of Deepika Kumari, Gautam Kumar, Pragya Tiwari, Samee
 
 [7]	Analog Discovery 2 from https://digilent.com/reference/test-and-measurement/analog-discovery-2/start 
 
-==========================================================================================================================================================================================================================
+========================================END================================================
 
 # Bandgap Reference
 ## Title: A Power and Area Efficient CMOS Bandgap Reference Circuit with an Integrated Voltage-Reference Branch
